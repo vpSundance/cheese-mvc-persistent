@@ -15,7 +15,7 @@ public class AddMenuItemForm {
     private Iterable<Cheese> cheeses;
 
     @NotNull
-    private int menuId; // This is STUPID why is this here?!
+    private int menuId;
 
     @NotNull
     private int cheeseId;
@@ -32,7 +32,6 @@ public class AddMenuItemForm {
         return menuId;
     }
 
-    // This can't be right, why would we ever do this??
     public void setMenuId(int menuId) {
         this.menuId = menuId;
     }

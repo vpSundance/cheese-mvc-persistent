@@ -19,8 +19,7 @@
         <span th:errors="*{cheeseId}" class="error"></span>
     </div>
 
-    <!-- seriously WTF is the point of this!? -->
-    <input type="hidden" th:field="*{menuId}" th:value="*{menu.id}" />
+    <input type="hidden" th:name="menuId" th:value="*{menu.id}" />
 
     <input type="submit" value="Add Menu Item" />
 </form>

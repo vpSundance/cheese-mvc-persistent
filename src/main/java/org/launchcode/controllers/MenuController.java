@@ -12,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -83,14 +84,14 @@ public class MenuController {
     }
 
     @RequestMapping(value = "add-item", method = RequestMethod.POST)
-    public String addItem(Model model, @Valid AddMenuItemForm form, Errors errors) {
+    public String addItem(Model model, @Valid AddMenuItemForm form, Errors errors, @RequestParam int menuId, int cheeseId) {
 
         if (errors.hasErrors()) {
             return "menu/add-item";
         }
 
-        Cheese cheese = cheeseDao.findOne(form.getCheeseId());
-        Menu menu = menuDao.findOne(form.getMenuId());
+        Cheese cheese = cheeseDao.findOne(cheeseId);
+        Menu menu = menuDao.findOne(menuId);
 
         menu.addItem(cheese);
 
