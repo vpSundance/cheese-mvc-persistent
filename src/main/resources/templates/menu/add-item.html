@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Add Menu Item</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${cheeses} and ${cheeses.size()}">no cheese :(</p>
+
+<form method="post" style="max-width:600px;" th:object="${form}" action="/menu/add-item" th:if="${form.cheeses} and ${form.cheeses.size()}">
+    <div class="form-group">
+        <label th:for="cheeseId">Cheese</label>
+        <select name="cheeseId" th:field="*{cheeseId}">
+            <option th:each="cheese : ${form.cheeses}"
+                    th:text="${cheese.name}"
+                    th:value="${cheese.id}" />
+        </select>
+        <span th:errors="*{cheeseId}" class="error"></span>
+    </div>
+
+    <!-- seriously WTF is the point of this!? -->
+    <input type="hidden" th:field="*{menuId}" th:value="*{menu.id}" />
+
+    <input type="submit" value="Add Menu Item" />
+</form>
+
+</body>
+</html>
